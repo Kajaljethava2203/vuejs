@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="root">
+    <h1>All Tasks</h1>
+        <ul>
+        <li v-for="task in tasks" v-text="task.description"></li>
+        </ul>
+
+    <h1>Incompleted Tasks</h1>
+        <ul>
+        <li v-for="task in incompleteTasks"  v-text="task.description"></li>
+        </ul>
+
+        <h1>Add name</h1>
+            <ul>
+            <li v-for="name in names" v-text="name"></li>
+            </ul>
+
+         <input id="input" type="text" v-model="newName">
+
+         <button v-on:click="addName">Add name</button>
+
+      <!--<button id="button">Add name</button>-->
+
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+<script>
+
+    // document.querySelector('#input').value = data.message;
+
+    var app = new Vue({
+        el:'#root',
+
+        data : {
+            newName:'',
+            names : ['marry' , 'john' , 'dummy'],
+
+            tasks : [
+                { description: 'Goto the store',complete:true },
+                { description: 'Finish your work',complete:false },
+                { description: 'Make donation',complete:false },
+                { description: 'Clear inbox',complete:false},
+                { description: 'Make dinner',complete:false},
+                { description: 'Clean room',complete:true}
+            ]
+
+
+        },
+
+        methods: {
+            addName (){
+                // alert('adding name');
+                this.names.push(this.newName);
+                this.newName='';
+            }
+        },
+
+        computed: {
+            incompleteTasks(){
+                return this.tasks.filter(task=>!task.complete);
+            }
+        }
+        // mounted(){
+        //     document.querySelector('#button').addEventListener('click',()=>{
+        //         let name = document.querySelector('#input');
+        //
+        //         app.names.push(name.value);
+        //
+        //         name.value='';
+        //     });
+        // }
+    });
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="root">
+        <input type="text" id="input" v-model="message">
+        <p>The value of input is {{ message }}</p>
+
+        <!--reverse words-->
+        <h1>
+<!--            {{ message.split('').reverse().join('') }}-->
+            {{ reversedMessage }}
+        </h1>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+    <script>
+
+        // document.querySelector('#input').value = data.message;
+
+        var app = new Vue({
+            el:'#root',
+            data : {
+                message: 'hello'
+            },
+            computed:{
+                reversedMessage(){
+                    return this.message.split('').reverse().join('');
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
